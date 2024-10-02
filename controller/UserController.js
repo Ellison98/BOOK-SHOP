@@ -25,7 +25,7 @@ const login = (req, res) => {
     const { email, password } = req.body;
 
     let sql = 'SELECT * FROM users WHERE email = ?';
-    conn.query(sql, values,
+    conn.query(sql, email,
         (err, result) => {
             if (err) {
                 console.log(err);
@@ -38,7 +38,7 @@ const login = (req, res) => {
                     email : loginUser.email,
                 }, process.env.PRIVATE_KEY, {
                     expiresIn : '5m',
-                    issuer : 'songa'
+                    issuer : 'im'
                 });
 
                 // 토큰 쿠기에 담기
